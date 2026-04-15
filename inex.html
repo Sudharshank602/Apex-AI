@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ApexAI — Predictive Talent Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#09090f;
+  --surface:#111118;
+  --surface2:#18181f;
+  --border:#ffffff0f;
+  --border2:#ffffff18;
+  --text:#f0f0f5;
+  --muted:#8888a0;
+  --accent:#6c63ff;
+  --accent2:#00e5be;
+  --accent3:#ff6b6b;
+  --hire:#00e5be;
+  --consider:#f5c518;
+  --decline:#ff4757;
+  --font-display:'Syne',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'DM Mono',monospace;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;overflow-x:hidden}
+
+/* grid bg */
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+
+/* glow orbs */
+.orb{position:fixed;border-radius:50%;filter:blur(120px);opacity:0.12;pointer-events:none;z-index:0}
+.orb1{width:600px;height:600px;background:#6c63ff;top:-200px;right:-100px}
+.orb2{width:400px;height:400px;background:#00e5be;bottom:-100px;left:-100px}
+
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 28px 80px}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:24px 0 40px;border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-mark{width:36px;height:36px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:16px;color:#fff;letter-spacing:-1px}
+.logo-text{font-family:var(--font-display);font-size:18px;font-weight:700;letter-spacing:-0.5px}
+.logo-text span{color:var(--accent2)}
+.nav-badge{background:var(--surface2);border:1px solid var(--border2);border-radius:20px;padding:6px 14px;font-size:12px;font-family:var(--font-mono);color:var(--muted);display:flex;align-items:center;gap:8px}
+.status-dot{width:7px;height:7px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+/* HERO */
+.hero{padding:64px 0 48px;text-align:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border2);border-radius:20px;padding:6px 16px;font-size:12px;font-family:var(--font-mono);color:var(--accent2);margin-bottom:28px;letter-spacing:0.05em}
+.hero h1{font-family:var(--font-display);font-size:clamp(36px,6vw,64px);font-weight:800;line-height:1.05;letter-spacing:-2px;margin-bottom:20px}
+.hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:17px;color:var(--muted);max-width:520px;margin:0 auto 40px;line-height:1.6}
+
+/* METRICS BAR */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:48px}
+.metric{background:var(--surface);padding:20px 24px;text-align:center}
+.metric-val{font-family:var(--font-display);font-size:28px;font-weight:800;letter-spacing:-1px;color:var(--text)}
+.metric-val.green{color:var(--accent2)}
+.metric-label{font-size:11px;font-family:var(--font-mono);color:var(--muted);margin-top:4px;letter-spacing:0.05em}
+
+/* TABS */
+.tabs{display:flex;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:4px;margin-bottom:32px}
+.tab{flex:1;padding:10px;border:none;background:transparent;color:var(--muted);font-family:var(--font-body);font-size:13px;font-weight:500;border-radius:8px;cursor:pointer;transition:all 0.2s}
+.tab.active{background:var(--accent);color:#fff}
+.tab:hover:not(.active){background:var(--surface2);color:var(--text)}
+
+/* PANELS */
+.panel{display:none}
+.panel.active{display:block}
+
+/* INPUT CARD */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px;margin-bottom:20px}
+.card-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.card-icon{width:36px;height:36px;border-radius:10px;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:16px}
+.card-title{font-family:var(--font-display);font-size:16px;font-weight:700}
+.card-sub{font-size:12px;color:var(--muted);margin-top:2px}
+
+label{display:block;font-size:12px;font-family:var(--font-mono);color:var(--muted);margin-bottom:8px;letter-spacing:0.05em}
+textarea{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:16px;color:var(--text);font-family:var(--font-mono);font-size:13px;resize:vertical;min-height:200px;outline:none;transition:border 0.2s;line-height:1.6}
+textarea:focus{border-color:var(--accent)}
+input[type=text]{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:12px 16px;color:var(--text);font-family:var(--font-body);font-size:14px;outline:none;transition:border 0.2s}
+input[type=text]:focus{border-color:var(--accent)}
+
+.btn-primary{width:100%;padding:16px;background:var(--accent);border:none;border-radius:12px;color:#fff;font-family:var(--font-display);font-size:15px;font-weight:700;cursor:pointer;letter-spacing:-0.3px;transition:all 0.2s;position:relative;overflow:hidden}
+.btn-primary:hover{opacity:0.9;transform:translateY(-1px)}
+.btn-primary:active{transform:translateY(0)}
+.btn-primary:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.btn-secondary{padding:10px 20px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:var(--font-body);font-size:13px;cursor:pointer;transition:all 0.2s}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+
+/* LOADING */
+.loading{display:none;text-align:center;padding:48px}
+.loading.show{display:block}
+.spinner{width:48px;height:48px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 20px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-family:var(--font-mono);font-size:13px;color:var(--muted)}
+.loading-steps{display:flex;flex-direction:column;gap:8px;margin-top:20px;text-align:left;max-width:300px;margin:20px auto 0}
+.loading-step{display:flex;align-items:center;gap:10px;font-size:12px;font-family:var(--font-mono);color:var(--muted);opacity:0;animation:fadeStep 0.4s forwards}
+.loading-step.done{color:var(--accent2)}
+.step-dot{width:6px;height:6px;border-radius:50%;background:var(--muted);flex-shrink:0}
+.loading-step.done .step-dot{background:var(--accent2)}
+@keyframes fadeStep{to{opacity:1}}
+
+/* DECISION BANNER */
+.decision-banner{border-radius:16px;padding:28px 32px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.decision-banner.hire{background:#00e5be12;border:1px solid #00e5be30}
+.decision-banner.consider{background:#f5c51812;border:1px solid #f5c51830}
+.decision-banner.decline{background:#ff475712;border:1px solid #ff475730}
+.decision-label{font-size:11px;font-family:var(--font-mono);letter-spacing:0.1em;margin-bottom:6px;opacity:0.7}
+.decision-text{font-family:var(--font-display);font-size:32px;font-weight:800;letter-spacing:-1px}
+.hire .decision-text{color:var(--hire)}
+.consider .decision-text{color:var(--consider)}
+.decline .decision-text{color:var(--decline)}
+.overall-score{text-align:right}
+.score-big{font-family:var(--font-display);font-size:48px;font-weight:800;letter-spacing:-2px;line-height:1}
+.score-denom{font-size:18px;color:var(--muted);font-weight:400}
+.score-label{font-size:11px;font-family:var(--font-mono);color:var(--muted);margin-top:4px;letter-spacing:0.05em}
+
+/* SCORE BARS */
+.scores-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.score-item{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px}
+.score-name{font-size:12px;font-family:var(--font-mono);color:var(--muted);margin-bottom:10px;letter-spacing:0.03em}
+.score-row{display:flex;align-items:center;gap:12px}
+.score-bar-wrap{flex:1;height:6px;background:var(--surface2);border-radius:3px;overflow:hidden}
+.score-bar{height:100%;border-radius:3px;background:var(--accent);transition:width 1s cubic-bezier(.16,1,.3,1)}
+.score-val{font-family:var(--font-display);font-size:18px;font-weight:700;min-width:36px;text-align:right}
+
+/* TAGS */
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.tag{padding:5px 12px;border-radius:20px;font-size:12px;font-family:var(--font-mono)}
+.tag-skill{background:#6c63ff18;border:1px solid #6c63ff30;color:#a09af8}
+.tag-strength{background:#00e5be12;border:1px solid #00e5be25;color:#00e5be}
+.tag-gap{background:#ff475712;border:1px solid #ff475730;color:#ff6b6b}
+
+/* REPORT */
+.report-box{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:20px;font-family:var(--font-mono);font-size:12px;color:var(--muted);line-height:1.8;white-space:pre-wrap;max-height:400px;overflow-y:auto}
+.report-box::-webkit-scrollbar{width:4px}
+.report-box::-webkit-scrollbar-track{background:var(--surface)}
+.report-box::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+/* CANDIDATES TABLE */
+.table-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead{background:var(--surface2)}
+th{padding:14px 20px;text-align:left;font-size:11px;font-family:var(--font-mono);color:var(--muted);letter-spacing:0.05em;font-weight:400;border-bottom:1px solid var(--border)}
+td{padding:16px 20px;border-bottom:1px solid var(--border);color:var(--text)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--surface2)}
+.decision-pill{padding:4px 12px;border-radius:20px;font-size:11px;font-family:var(--font-mono);font-weight:500}
+.pill-hire{background:#00e5be15;color:#00e5be;border:1px solid #00e5be30}
+.pill-consider{background:#f5c51815;color:#f5c518;border:1px solid #f5c51830}
+.pill-decline{background:#ff475715;color:#ff4757;border:1px solid #ff475730}
+
+/* SKILL GAP */
+.gap-meter{margin:20px 0}
+.gap-pct{font-family:var(--font-display);font-size:56px;font-weight:800;letter-spacing:-3px}
+.gap-bar-wrap{height:10px;background:var(--surface2);border-radius:5px;overflow:hidden;margin:12px 0}
+.gap-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:5px;transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+
+/* SECTION LABELS */
+.section-label{font-size:11px;font-family:var(--font-mono);color:var(--muted);letter-spacing:0.08em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ADVICE ITEMS */
+.advice-list{display:flex;flex-direction:column;gap:10px}
+.advice-item{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);font-size:13px;line-height:1.5;color:var(--muted)}
+.advice-num{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-family:var(--font-mono);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+
+/* ERROR */
+.error-box{background:#ff475712;border:1px solid #ff475730;border-radius:12px;padding:16px 20px;color:#ff6b6b;font-size:13px;font-family:var(--font-mono);margin-bottom:20px;display:none}
+.error-box.show{display:block}
+
+/* ANIMATIONS */
+.fade-in{animation:fadeIn 0.5s ease forwards}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* CANDIDATE DETAIL */
+.candidate-header{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.avatar{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:20px;font-weight:800;color:#fff;flex-shrink:0}
+.candidate-name{font-family:var(--font-display);font-size:22px;font-weight:800;letter-spacing:-0.5px}
+.candidate-meta{font-size:13px;color:var(--muted);margin-top:4px;font-family:var(--font-mono)}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .scores-grid{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .decision-banner{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<div class="wrap">
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">
+      <div class="logo-mark">A</div>
+      <div class="logo-text">Apex<span>AI</span></div>
+    </div>
+    <div class="nav-badge">
+      <span class="status-dot"></span>
+      <span id="nav-status">connecting...</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">&#9670; Predictive Talent Intelligence Platform</div>
+    <h1>Hire smarter with<br><span class="grad">AI-powered insight</span></h1>
+    <p>Analyze resumes, score candidates across 5 dimensions, detect skill gaps, and get instant HIRE decisions — all in seconds.</p>
+  </div>
+
+  <!-- METRICS -->
+  <div class="metrics" id="metrics-bar">
+    <div class="metric"><div class="metric-val green" id="m-total">0</div><div class="metric-label">CANDIDATES ANALYZED</div></div>
+    <div class="metric"><div class="metric-val" id="m-hire">0</div><div class="metric-label">HIRE DECISIONS</div></div>
+    <div class="metric"><div class="metric-val" id="m-avg">—</div><div class="metric-label">AVG SCORE</div></div>
+    <div class="metric"><div class="metric-val green">4</div><div class="metric-label">AI AGENTS ACTIVE</div></div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('analyze')">&#9670; Analyze Resume</button>
+    <button class="tab" onclick="switchTab('skillgap')">&#9651; Skill Gap</button>
+    <button class="tab" onclick="switchTab('candidates')">&#9632; All Candidates</button>
+  </div>
+
+  <!-- ERROR -->
+  <div class="error-box" id="error-box"></div>
+
+  <!-- PANEL: ANALYZE -->
+  <div class="panel active" id="panel-analyze">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">&#128196;</div>
+        <div><div class="card-title">Resume input</div><div class="card-sub">Paste any resume as plain text</div></div>
+      </div>
+      <label>RESUME TEXT</label>
+      <textarea id="resume-input" placeholder="John Smith&#10;john@email.com&#10;&#10;Summary&#10;Senior engineer with 5+ years...&#10;&#10;Skills&#10;Python, React, Docker, AWS...&#10;&#10;Experience&#10;..."></textarea>
+      <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+        <label style="margin:0;flex:1">JOB TITLE (optional)</label>
+      </div>
+      <input type="text" id="job-title" placeholder="e.g. Senior Backend Engineer" style="margin-top:8px;margin-bottom:16px"/>
+      <button class="btn-primary" onclick="runPredict()" id="predict-btn">Run AI pipeline &#8594;</button>
+      <div id="debug-msg" style="margin-top:12px;font-size:12px;font-family:monospace;color:#8888a0;min-height:18px"></div>
+    </div>
+
+    <!-- LOADING -->
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <div class="loading-text">Running 4-agent pipeline...</div>
+      <div class="loading-steps">
+        <div class="loading-step" id="step1" style="animation-delay:0.2s"><span class="step-dot"></span>ResumeAgent — parsing structure</div>
+        <div class="loading-step" id="step2" style="animation-delay:0.8s"><span class="step-dot"></span>ScoringAgent — evaluating 5 dimensions</div>
+        <div class="loading-step" id="step3" style="animation-delay:1.4s"><span class="step-dot"></span>AdvisorAgent — generating insights</div>
+        <div class="loading-step" id="step4" style="animation-delay:2.0s"><span class="step-dot"></span>ReportAgent — writing final report</div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="results" style="display:none"></div>
+  </div>
+
+  <!-- PANEL: SKILL GAP -->
+  <div class="panel" id="panel-skillgap">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">&#9651;</div>
+        <div><div class="card-title">Skill gap analyzer</div><div class="card-sub">Compare resume against role requirements</div></div>
+      </div>
+      <label>RESUME TEXT</label>
+      <textarea id="gap-resume" style="min-height:140px" placeholder="Paste resume text here..."></textarea>
+      <label style="margin-top:16px">REQUIRED SKILLS (comma separated)</label>
+      <input type="text" id="gap-skills" placeholder="Python, Docker, Kubernetes, AWS, React, PostgreSQL" style="margin-top:8px;margin-bottom:16px"/>
+      <button class="btn-primary" onclick="runSkillGap()">Analyze skill gap &#8594;</button>
+    </div>
+    <div id="gap-results"></div>
+  </div>
+
+  <!-- PANEL: CANDIDATES -->
+  <div class="panel" id="panel-candidates">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div class="card-title" style="font-family:var(--font-display)">Candidate database</div>
+      <button class="btn-secondary" onclick="loadCandidates()">&#8635; Refresh</button>
+    </div>
+    <div id="candidates-table-wrap"></div>
+    <div id="candidate-detail"></div>
+  </div>
+
+</div>
+
+<script>
+const API = 'http://localhost:8000/api/v1';
+
+function dbg(msg){ 
+  const el = document.getElementById('debug-msg');
+  if(el) el.textContent = msg;
+  console.log('[ApexAI]', msg);
+}
+
+async function checkHealth(){
+  try{
+    const r = await fetch('http://localhost:8000/health');
+    const d = await r.json();
+    document.getElementById('nav-status').textContent = 'API live — v' + d.version;
+    loadMetrics();
+  }catch(e){
+    document.getElementById('nav-status').textContent = 'API offline';
+    document.querySelector('.status-dot').style.background='#ff4757';
+  }
+}
+
+async function loadMetrics(){
+  try{
+    const r = await fetch(API+'/candidates');
+    const d = await r.json();
+    const list = d.data || [];
+    document.getElementById('m-total').textContent = d.meta?.total || list.length;
+    const hires = list.filter(c=>c.hiring_decision==='HIRE').length;
+    document.getElementById('m-hire').textContent = hires;
+    const scores = list.filter(c=>c.overall_score).map(c=>c.overall_score);
+    if(scores.length){
+      const avg = scores.reduce((a,b)=>a+b,0)/scores.length;
+      document.getElementById('m-avg').textContent = avg.toFixed(1);
+    }
+  }catch(e){}
+}
+
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    const tabs=['analyze','skillgap','candidates'];
+    t.classList.toggle('active', tabs[i]===name);
+  });
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  if(name==='candidates') loadCandidates();
+}
+
+function showError(msg){
+  const el = document.getElementById('error-box');
+  el.textContent = '⚠ '+msg;
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),6000);
+}
+
+function getScoreColor(v){
+  if(v>=8) return '#00e5be';
+  if(v>=6) return '#6c63ff';
+  if(v>=4) return '#f5c518';
+  return '#ff4757';
+}
+
+async function runPredict(){
+  const text = document.getElementById('resume-input').value.trim();
+  if(!text){showError('Please paste a resume first.');return;}
+  if(text.length < 30){showError('Resume text is too short — paste the full resume.');return;}
+
+  document.getElementById('predict-btn').disabled = true;
+  document.getElementById('results').style.display='none';
+  const loading = document.getElementById('loading');
+  loading.classList.add('show');
+
+  const steps=['step1','step2','step3','step4'];
+  steps.forEach(s=>{
+    const el=document.getElementById(s);
+    el.style.opacity='0';
+    el.classList.remove('done');
+    void el.offsetWidth;
+    el.style.animation='none';
+    void el.offsetWidth;
+    el.style.animation='';
+  });
+
+  let stepIdx=0;
+  const stepTimer = setInterval(()=>{
+    if(stepIdx<steps.length){
+      const el=document.getElementById(steps[stepIdx]);
+      el.classList.add('done');
+      stepIdx++;
+    }
+  }, 700);
+
+  try{
+    dbg('Sending request to API...');
+    const body = {resume_text: text};
+    const jt = document.getElementById('job-title').value.trim();
+    if(jt) body.job_title = jt;
+
+    const r = await fetch(API+'/predict',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(body)
+    });
+
+    clearInterval(stepTimer);
+    steps.forEach(s=>document.getElementById(s).classList.add('done'));
+    dbg('Got response: HTTP ' + r.status);
+
+    let d;
+    try{ 
+      d = await r.json();
+      dbg('Response parsed OK. status=' + d.status);
+    } catch(je){
+      loading.classList.remove('show');
+      document.getElementById('predict-btn').disabled=false;
+      showError('Server returned invalid JSON. Check uvicorn terminal for errors.');
+      return;
+    }
+
+    if(!r.ok){
+      loading.classList.remove('show');
+      document.getElementById('predict-btn').disabled=false;
+      const msg = d?.detail?.[0]?.msg || d?.message || ('HTTP '+r.status);
+      showError('API Error: ' + msg);
+      return;
+    }
+
+    if(!d || !d.data){
+      loading.classList.remove('show');
+      document.getElementById('predict-btn').disabled=false;
+      showError('API returned empty data. Check uvicorn terminal.');
+      return;
+    }
+
+    dbg('Data received. Rendering results...');
+    loading.classList.remove('show');
+    renderResults(d.data);
+    document.getElementById('predict-btn').disabled=false;
+    loadMetrics();
+    dbg('Done!');
+
+  }catch(e){
+    clearInterval(stepTimer);
+    loading.classList.remove('show');
+    document.getElementById('predict-btn').disabled=false;
+    showError('Connection failed: ' + e.message);
+    dbg('ERROR: ' + e.message);
+  }
+}
+
+function renderResults(data){
+  const report = data.report;
+  const scores = data.scores;
+  const advice = data.advice;
+  const parsed = data.parsed_resume;
+  const decision = report.hiring_decision;
+  const decClass = decision.toLowerCase();
+
+  const scoreItems = [
+    {name:'technical skills', val:scores.technical_skills},
+    {name:'experience depth', val:scores.experience_depth},
+    {name:'education relevance', val:scores.education_relevance},
+    {name:'communication clarity', val:scores.communication_clarity},
+    {name:'leadership potential', val:scores.leadership_potential},
+  ];
+
+  const initials = (parsed.name||'?').split(' ').map(w=>w[0]||'').join('').slice(0,2).toUpperCase();
+
+  let html = `<div class="fade-in">`;
+
+  html += `
+  <div class="card" style="padding:0;overflow:hidden;margin-bottom:20px">
+    <div class="decision-banner ${decClass}" style="border:none;border-radius:0;border-bottom:1px solid var(--border)">
+      <div>
+        <div class="decision-label">AI HIRING DECISION</div>
+        <div class="decision-text">${decision}</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:8px;max-width:400px;line-height:1.5">${report.recommendation}</div>
+      </div>
+      <div class="overall-score">
+        <div class="score-big" style="color:${getScoreColor(scores.overall)}">${scores.overall.toFixed(1)}<span class="score-denom">/10</span></div>
+        <div class="score-label">OVERALL SCORE</div>
+      </div>
+    </div>
+    <div style="padding:20px 28px">
+      <div class="candidate-header">
+        <div class="avatar">${initials}</div>
+        <div>
+          <div class="candidate-name">${parsed.name}</div>
+          <div class="candidate-meta">${parsed.contact?.email||''} ${parsed.contact?.phone ? '· '+parsed.contact.phone : ''}</div>
+        </div>
+        <div style="margin-left:auto;font-size:12px;font-family:var(--font-mono);color:var(--muted)">ID: ${data.candidate_id}</div>
+      </div>
+      <div class="section-label">DETECTED SKILLS</div>
+      <div class="tags">${(parsed.skills||[]).slice(0,20).map(s=>`<span class="tag tag-skill">${s}</span>`).join('')}</div>
+    </div>
+  </div>`;
+
+  html += `<div class="scores-grid">`;
+  scoreItems.forEach(s=>{
+    const pct = (s.val/10)*100;
+    html += `
+    <div class="score-item fade-in">
+      <div class="score-name">${s.name.toUpperCase()}</div>
+      <div class="score-row">
+        <div class="score-bar-wrap"><div class="score-bar" style="width:0%;background:${getScoreColor(s.val)}" data-pct="${pct}"></div></div>
+        <div class="score-val" style="color:${getScoreColor(s.val)}">${s.val.toFixed(1)}</div>
+      </div>
+    </div>`;
+  });
+  html += `</div>`;
+
+  html += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px">`;
+
+  html += `<div class="card"><div class="card-header"><div class="card-icon" style="background:#00e5be12;border-color:#00e5be25">&#10003;</div><div><div class="card-title">Strengths</div></div></div>
+  <div class="advice-list">${(advice.strengths||[]).map((s,i)=>`<div class="advice-item"><div class="advice-num" style="background:#00e5be">${i+1}</div><span>${s}</span></div>`).join('')}</div></div>`;
+
+  html += `<div class="card"><div class="card-header"><div class="card-icon" style="background:#ff475712;border-color:#ff475730">&#8679;</div><div><div class="card-title">Improvement areas</div></div></div>
+  <div class="advice-list">${(advice.improvement_areas||[]).map((s,i)=>`<div class="advice-item"><div class="advice-num" style="background:#ff4757">${i+1}</div><span>${s}</span></div>`).join('')}</div></div>`;
+
+  html += `</div>`;
+
+  html += `<div class="card" style="margin-bottom:20px"><div class="card-header"><div class="card-icon">&#9654;</div><div><div class="card-title">Career path suggestions</div></div></div>
+  <div class="advice-list">${(advice.career_path_suggestions||[]).map(s=>`<div class="advice-item"><span style="color:var(--accent2);margin-right:6px">&#8594;</span><span>${s}</span></div>`).join('')}</div></div>`;
+
+  html += `<div class="card"><div class="card-header"><div class="card-icon">&#128196;</div><div><div class="card-title">Full talent report</div><div class="card-sub">Complete AI-generated hiring report</div></div></div>
+  <div class="report-box">${report.full_report_text}</div></div>`;
+
+  html += `</div>`;
+
+  const el = document.getElementById('results');
+  el.innerHTML = html;
+  el.style.display = 'block';
+
+  setTimeout(()=>{
+    document.querySelectorAll('.score-bar').forEach(bar=>{
+      bar.style.width = bar.dataset.pct + '%';
+    });
+  }, 100);
+}
+
+async function runSkillGap(){
+  const text = document.getElementById('gap-resume').value.trim();
+  const skills = document.getElementById('gap-skills').value.trim();
+  if(!text||!skills){showError('Please fill in both fields.');return;}
+
+  const required = skills.split(',').map(s=>s.trim()).filter(Boolean);
+
+  try{
+    const r = await fetch(API+'/skill-gap',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({resume_text:text, required_skills:required})
+    });
+    const d = await r.json();
+    renderGapResults(d.data);
+  }catch(e){
+    showError('API error. Make sure the server is running.');
+  }
+}
+
+function renderGapResults(data){
+  const pct = data.gap_percentage;
+  const match = (100-pct).toFixed(0);
+  let html = `<div class="fade-in">
+  <div class="card" style="margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center">
+      <div>
+        <div class="section-label">SKILL MATCH RATE</div>
+        <div class="gap-pct" style="color:${pct>60?'#ff4757':pct>30?'#f5c518':'#00e5be'}">${match}%</div>
+        <div class="gap-bar-wrap"><div class="gap-bar-fill" style="width:${match}%"></div></div>
+        <div style="font-size:13px;color:var(--muted)">Est. learning time: <strong style="color:var(--text)">${data.estimated_learning_time}</strong></div>
+      </div>
+      <div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="background:var(--surface2);border-radius:10px;padding:14px;text-align:center">
+            <div style="font-family:var(--font-display);font-size:28px;font-weight:800;color:#00e5be">${data.present_skills.length}</div>
+            <div style="font-size:11px;font-family:var(--font-mono);color:var(--muted);margin-top:4px">PRESENT</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:10px;padding:14px;text-align:center">
+            <div style="font-family:var(--font-display);font-size:28px;font-weight:800;color:#ff4757">${data.missing_skills.length}</div>
+            <div style="font-size:11px;font-family:var(--font-mono);color:var(--muted);margin-top:4px">MISSING</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div class="card">
+      <div class="section-label">SKILLS YOU HAVE</div>
+      <div class="tags">${data.present_skills.map(s=>`<span class="tag tag-strength">${s}</span>`).join('')||'<span style="color:var(--muted);font-size:13px">None detected</span>'}</div>
+    </div>
+    <div class="card">
+      <div class="section-label">SKILLS TO LEARN</div>
+      <div class="tags">${data.missing_skills.map(s=>`<span class="tag tag-gap">${s}</span>`).join('')||'<span style="color:var(--muted);font-size:13px">No gaps found!</span>'}</div>
+    </div>
+  </div>
+  ${data.priority_skills_to_learn.length?`
+  <div class="card" style="margin-top:20px">
+    <div class="section-label">PRIORITY SKILLS TO LEARN FIRST</div>
+    <div class="advice-list">${data.priority_skills_to_learn.map((s,i)=>`<div class="advice-item"><div class="advice-num">${i+1}</div><span>${s}</span></div>`).join('')}</div>
+  </div>`:''}
+  </div>`;
+
+  const el = document.getElementById('gap-results');
+  el.innerHTML = html;
+}
+
+async function loadCandidates(){
+  try{
+    const r = await fetch(API+'/candidates?limit=50');
+    const d = await r.json();
+    renderCandidatesTable(d.data||[], d.meta||{});
+  }catch(e){
+    document.getElementById('candidates-table-wrap').innerHTML='<div class="error-box show">Cannot reach API.</div>';
+  }
+}
+
+function renderCandidatesTable(list, meta){
+  if(!list.length){
+    document.getElementById('candidates-table-wrap').innerHTML='<div class="card" style="text-align:center;padding:48px;color:var(--muted)">No candidates yet. Run the pipeline first.</div>';
+    return;
+  }
+  let html=`<div class="table-wrap fade-in"><table>
+  <thead><tr><th>ID</th><th>NAME</th><th>EMAIL</th><th>SCORE</th><th>DECISION</th><th>DATE</th><th></th></tr></thead>
+  <tbody>`;
+  list.forEach(c=>{
+    const decClass = (c.hiring_decision||'').toLowerCase();
+    const pillClass = decClass==='hire'?'pill-hire':decClass==='consider'?'pill-consider':'pill-decline';
+    const date = c.created_at ? new Date(c.created_at).toLocaleDateString('en-IN') : '—';
+    html+=`<tr>
+      <td style="font-family:var(--font-mono);color:var(--muted)">#${c.id}</td>
+      <td style="font-weight:500">${c.name}</td>
+      <td style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">${c.email||'—'}</td>
+      <td><span style="font-family:var(--font-display);font-size:16px;font-weight:700;color:${getScoreColor(c.overall_score||0)}">${(c.overall_score||0).toFixed(1)}</span></td>
+      <td><span class="decision-pill ${pillClass}">${c.hiring_decision||'—'}</span></td>
+      <td style="font-size:12px;color:var(--muted)">${date}</td>
+      <td><button class="btn-secondary" style="font-size:11px;padding:6px 12px" onclick="loadCandidate(${c.id})">View</button></td>
+    </tr>`;
+  });
+  html+=`</tbody></table></div>`;
+  document.getElementById('candidates-table-wrap').innerHTML=html;
+}
+
+async function loadCandidate(id){
+  try{
+    const r = await fetch(API+'/candidates/'+id);
+    const d = await r.json();
+    renderCandidateDetail(d.data);
+  }catch(e){showError('Could not load candidate.');}
+}
+
+function renderCandidateDetail(c){
+  const dec = c.latest_report?.hiring_decision||'—';
+  const decClass = dec.toLowerCase();
+  const initials = (c.name||'?').split(' ').map(w=>w[0]||'').join('').slice(0,2).toUpperCase();
+  const html=`<div class="card fade-in" style="margin-top:20px">
+    <div class="candidate-header">
+      <div class="avatar">${initials}</div>
+      <div><div class="candidate-name">${c.name}</div><div class="candidate-meta">${c.email||''} · ${c.phone||'N/A'}</div></div>
+      <div style="margin-left:auto"><span class="decision-pill ${decClass==='hire'?'pill-hire':decClass==='consider'?'pill-consider':'pill-decline'}">${dec}</span></div>
+    </div>
+    ${c.scores?`
+    <div class="section-label">SCORE BREAKDOWN</div>
+    <div class="scores-grid">
+      ${[['Technical Skills',c.scores.technical_skills],['Experience Depth',c.scores.experience_depth],['Education Relevance',c.scores.education_relevance],['Communication',c.scores.communication_clarity],['Leadership',c.scores.leadership_potential]].map(([n,v])=>`
+      <div class="score-item"><div class="score-name">${n.toUpperCase()}</div>
+      <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:${(v/10*100).toFixed(0)}%;background:${getScoreColor(v)}"></div></div>
+      <div class="score-val" style="color:${getScoreColor(v)}">${v.toFixed(1)}</div></div></div>`).join('')}
+    </div>`:''} 
+    ${c.latest_report?.recommendation?`
+    <div class="section-label" style="margin-top:12px">RECOMMENDATION</div>
+    <div style="font-size:14px;color:var(--muted);line-height:1.6;padding:14px 16px;background:var(--surface2);border-radius:10px">${c.latest_report.recommendation}</div>`:''}
+  </div>`;
+  function renderCandidateDetail(c){
+  const container = document.getElementById('candidate-detail');
+
+  // Prevent re-render (keeps popup stable)
+  if (container.innerHTML !== "") return;
+
+  const html = `<div class="card fade-in" style="margin-top:20px">
+    ${c.latest_report.recommendation}
+  </div>`;
+
+  container.innerHTML = html;
+}
+  document.getElementById('candidate-detail').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+checkHealth();
+</script>
+</body>
+</html>

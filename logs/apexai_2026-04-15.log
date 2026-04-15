@@ -1,0 +1,113 @@
+2026-04-15 22:39:00.790 | INFO     | main:lifespan:26 | ApexAI startup — initializing database …
+2026-04-15 22:39:00.821 | SUCCESS  | main:lifespan:28 | Database ready ✓
+2026-04-15 22:39:27.053 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-15 22:39:27.195 | INFO     | main:logging_middleware:82 | [634174f7] GET /health — 200 (142.1ms)
+2026-04-15 22:39:27.210 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-15 22:39:27.444 | INFO     | main:logging_middleware:82 | [d80e66df] GET /api/v1/candidates — 200 (234.1ms)
+2026-04-15 22:40:57.645 | INFO     | main:logging_middleware:74 | [?] OPTIONS /api/v1/predict — start
+2026-04-15 22:40:57.676 | INFO     | main:logging_middleware:82 | [5e068159] OPTIONS /api/v1/predict — 200 (36.6ms)
+2026-04-15 22:40:57.703 | INFO     | main:logging_middleware:74 | [?] POST /api/v1/predict — start
+2026-04-15 22:40:57.756 | INFO     | routes:predict:38 | [9c154790] POST /predict
+2026-04-15 22:40:57.759 | INFO     | workflow:run_pipeline:42 | Workflow: Pipeline started (1156 chars)
+2026-04-15 22:40:57.760 | INFO     | workflow:run_pipeline:45 | → Stage 1: ResumeAgent
+2026-04-15 22:40:57.762 | INFO     | agents.resume_agent:run:35 | ResumeAgent: Parsing resume text (1156 chars)
+2026-04-15 22:40:57.778 | SUCCESS  | agents.resume_agent:run:57 | ResumeAgent: Parsed → name=Name: Rahul Sharma, skills=7
+2026-04-15 22:40:57.780 | INFO     | workflow:run_pipeline:49 | → Stage 2: ScoringAgent
+2026-04-15 22:40:57.781 | INFO     | agents.scoring_agent:run:34 | ScoringAgent: Scoring candidate 'Name: Rahul Sharma'
+2026-04-15 22:40:57.783 | SUCCESS  | agents.scoring_agent:run:60 | ScoringAgent: overall=4.86
+2026-04-15 22:40:57.784 | INFO     | workflow:run_pipeline:53 | → Stage 3: AdvisorAgent
+2026-04-15 22:40:57.786 | INFO     | agents.advisor_agent:run:12 | AdvisorAgent: Generating advice for 'Name: Rahul Sharma'
+2026-04-15 22:40:57.787 | SUCCESS  | agents.advisor_agent:run:26 | AdvisorAgent: 1 strengths, 5 improvements
+2026-04-15 22:40:57.788 | INFO     | workflow:run_pipeline:57 | → Stage 4: ReportAgent
+2026-04-15 22:40:57.790 | INFO     | agents.report_agent:run:18 | ReportAgent: Generating report for 'Name: Rahul Sharma'
+2026-04-15 22:40:57.792 | SUCCESS  | agents.report_agent:run:34 | ReportAgent: Decision = DECLINE
+2026-04-15 22:40:57.795 | SUCCESS  | workflow:run_pipeline:61 | Workflow: Pipeline complete in 36.1ms | decision=HiringDecision.DECLINE
+2026-04-15 22:40:57.966 | INFO     | main:logging_middleware:82 | [9c154790] POST /api/v1/predict — 200 (262.7ms)
+2026-04-15 22:40:58.025 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-15 22:40:58.077 | INFO     | main:logging_middleware:82 | [5e86aeae] GET /api/v1/candidates — 200 (52.3ms)
+2026-04-15 22:40:58.899 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-15 22:40:58.904 | INFO     | main:logging_middleware:82 | [7743c4e5] GET /health — 200 (5.2ms)
+2026-04-15 22:41:01.275 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-15 22:41:01.310 | INFO     | main:logging_middleware:82 | [13b8b520] GET /api/v1/candidates — 200 (35.3ms)
+2026-04-15 22:41:07.291 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-15 22:41:07.342 | INFO     | main:logging_middleware:82 | [1874c225] GET /api/v1/candidates — 200 (51.1ms)
+2026-04-15 22:41:12.944 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates/10 — start
+2026-04-15 22:41:12.966 | INFO     | main:logging_middleware:82 | [468c1c7b] GET /api/v1/candidates/10 — 200 (22.5ms)
+2026-04-15 22:42:03.360 | INFO     | main:logging_middleware:74 | [?] OPTIONS /api/v1/skill-gap — start
+2026-04-15 22:42:03.362 | INFO     | main:logging_middleware:82 | [d10a45d1] OPTIONS /api/v1/skill-gap — 200 (2.3ms)
+2026-04-15 22:42:03.368 | INFO     | main:logging_middleware:74 | [?] POST /api/v1/skill-gap — start
+2026-04-15 22:42:03.379 | INFO     | routes:skill_gap:117 | [93d98b72] POST /skill-gap
+2026-04-15 22:42:03.380 | INFO     | agents.resume_agent:run:35 | ResumeAgent: Parsing resume text (1156 chars)
+2026-04-15 22:42:03.383 | SUCCESS  | agents.resume_agent:run:57 | ResumeAgent: Parsed → name=Name: Rahul Sharma, skills=7
+2026-04-15 22:42:03.388 | INFO     | main:logging_middleware:82 | [93d98b72] POST /api/v1/skill-gap — 200 (19.9ms)
+2026-04-15 22:44:25.367 | INFO     | main:logging_middleware:74 | [?] POST /api/v1/predict — start
+2026-04-15 22:44:25.473 | INFO     | routes:predict:38 | [0d602392] POST /predict
+2026-04-15 22:44:25.476 | INFO     | workflow:run_pipeline:42 | Workflow: Pipeline started (1156 chars)
+2026-04-15 22:44:25.480 | INFO     | workflow:run_pipeline:45 | → Stage 1: ResumeAgent
+2026-04-15 22:44:25.485 | INFO     | agents.resume_agent:run:35 | ResumeAgent: Parsing resume text (1156 chars)
+2026-04-15 22:44:25.498 | SUCCESS  | agents.resume_agent:run:57 | ResumeAgent: Parsed → name=Name: Rahul Sharma, skills=7
+2026-04-15 22:44:25.501 | INFO     | workflow:run_pipeline:49 | → Stage 2: ScoringAgent
+2026-04-15 22:44:25.504 | INFO     | agents.scoring_agent:run:34 | ScoringAgent: Scoring candidate 'Name: Rahul Sharma'
+2026-04-15 22:44:25.510 | SUCCESS  | agents.scoring_agent:run:60 | ScoringAgent: overall=4.86
+2026-04-15 22:44:25.512 | INFO     | workflow:run_pipeline:53 | → Stage 3: AdvisorAgent
+2026-04-15 22:44:25.513 | INFO     | agents.advisor_agent:run:12 | AdvisorAgent: Generating advice for 'Name: Rahul Sharma'
+2026-04-15 22:44:25.517 | SUCCESS  | agents.advisor_agent:run:26 | AdvisorAgent: 1 strengths, 5 improvements
+2026-04-15 22:44:25.519 | INFO     | workflow:run_pipeline:57 | → Stage 4: ReportAgent
+2026-04-15 22:44:25.520 | INFO     | agents.report_agent:run:18 | ReportAgent: Generating report for 'Name: Rahul Sharma'
+2026-04-15 22:44:25.526 | SUCCESS  | agents.report_agent:run:34 | ReportAgent: Decision = DECLINE
+2026-04-15 22:44:25.527 | SUCCESS  | workflow:run_pipeline:61 | Workflow: Pipeline complete in 51.1ms | decision=HiringDecision.DECLINE
+2026-04-15 22:44:25.673 | INFO     | main:logging_middleware:82 | [0d602392] POST /api/v1/predict — 200 (311.1ms)
+2026-04-15 22:44:25.723 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-15 22:44:25.799 | INFO     | main:logging_middleware:82 | [e7081cc0] GET /api/v1/candidates — 200 (75.8ms)
+2026-04-15 22:44:26.780 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-15 22:44:26.791 | INFO     | main:logging_middleware:82 | [b04ae1c7] GET /health — 200 (10.9ms)
+2026-04-15 22:44:26.810 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-15 22:44:26.869 | INFO     | main:logging_middleware:82 | [7f2a0d01] GET /api/v1/candidates — 200 (58.9ms)
+2026-04-15 22:44:51.546 | INFO     | main:logging_middleware:74 | [?] POST /api/v1/predict — start
+2026-04-15 22:44:51.551 | INFO     | routes:predict:38 | [7ecc1015] POST /predict
+2026-04-15 22:44:51.553 | INFO     | workflow:run_pipeline:42 | Workflow: Pipeline started (1156 chars)
+2026-04-15 22:44:51.554 | INFO     | workflow:run_pipeline:45 | → Stage 1: ResumeAgent
+2026-04-15 22:44:51.557 | INFO     | agents.resume_agent:run:35 | ResumeAgent: Parsing resume text (1156 chars)
+2026-04-15 22:44:51.560 | SUCCESS  | agents.resume_agent:run:57 | ResumeAgent: Parsed → name=Name: Rahul Sharma, skills=7
+2026-04-15 22:44:51.563 | INFO     | workflow:run_pipeline:49 | → Stage 2: ScoringAgent
+2026-04-15 22:44:51.565 | INFO     | agents.scoring_agent:run:34 | ScoringAgent: Scoring candidate 'Name: Rahul Sharma'
+2026-04-15 22:44:51.569 | SUCCESS  | agents.scoring_agent:run:60 | ScoringAgent: overall=4.86
+2026-04-15 22:44:51.577 | INFO     | workflow:run_pipeline:53 | → Stage 3: AdvisorAgent
+2026-04-15 22:44:51.578 | INFO     | agents.advisor_agent:run:12 | AdvisorAgent: Generating advice for 'Name: Rahul Sharma'
+2026-04-15 22:44:51.580 | SUCCESS  | agents.advisor_agent:run:26 | AdvisorAgent: 1 strengths, 5 improvements
+2026-04-15 22:44:51.582 | INFO     | workflow:run_pipeline:57 | → Stage 4: ReportAgent
+2026-04-15 22:44:51.584 | INFO     | agents.report_agent:run:18 | ReportAgent: Generating report for 'Name: Rahul Sharma'
+2026-04-15 22:44:51.586 | SUCCESS  | agents.report_agent:run:34 | ReportAgent: Decision = DECLINE
+2026-04-15 22:44:51.587 | SUCCESS  | workflow:run_pipeline:61 | Workflow: Pipeline complete in 34.4ms | decision=HiringDecision.DECLINE
+2026-04-15 22:44:51.623 | INFO     | main:logging_middleware:82 | [7ecc1015] POST /api/v1/predict — 200 (77.5ms)
+2026-04-15 22:44:51.639 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-15 22:44:51.703 | INFO     | main:logging_middleware:82 | [d22e7f77] GET /api/v1/candidates — 200 (63.9ms)
+2026-04-15 22:44:52.062 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-15 22:44:52.066 | INFO     | main:logging_middleware:82 | [b7585066] GET /health — 200 (3.8ms)
+2026-04-15 22:44:52.091 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-15 22:44:52.154 | INFO     | main:logging_middleware:82 | [a8181121] GET /api/v1/candidates — 200 (63.1ms)
+2026-04-15 22:45:02.926 | INFO     | main:logging_middleware:74 | [?] POST /api/v1/predict — start
+2026-04-15 22:45:02.932 | INFO     | routes:predict:38 | [c45f6369] POST /predict
+2026-04-15 22:45:02.935 | INFO     | workflow:run_pipeline:42 | Workflow: Pipeline started (1156 chars)
+2026-04-15 22:45:02.937 | INFO     | workflow:run_pipeline:45 | → Stage 1: ResumeAgent
+2026-04-15 22:45:02.944 | INFO     | agents.resume_agent:run:35 | ResumeAgent: Parsing resume text (1156 chars)
+2026-04-15 22:45:02.949 | SUCCESS  | agents.resume_agent:run:57 | ResumeAgent: Parsed → name=Name: Rahul Sharma, skills=7
+2026-04-15 22:45:02.953 | INFO     | workflow:run_pipeline:49 | → Stage 2: ScoringAgent
+2026-04-15 22:45:02.954 | INFO     | agents.scoring_agent:run:34 | ScoringAgent: Scoring candidate 'Name: Rahul Sharma'
+2026-04-15 22:45:02.956 | SUCCESS  | agents.scoring_agent:run:60 | ScoringAgent: overall=4.86
+2026-04-15 22:45:02.957 | INFO     | workflow:run_pipeline:53 | → Stage 3: AdvisorAgent
+2026-04-15 22:45:02.959 | INFO     | agents.advisor_agent:run:12 | AdvisorAgent: Generating advice for 'Name: Rahul Sharma'
+2026-04-15 22:45:02.960 | SUCCESS  | agents.advisor_agent:run:26 | AdvisorAgent: 1 strengths, 5 improvements
+2026-04-15 22:45:02.961 | INFO     | workflow:run_pipeline:57 | → Stage 4: ReportAgent
+2026-04-15 22:45:02.963 | INFO     | agents.report_agent:run:18 | ReportAgent: Generating report for 'Name: Rahul Sharma'
+2026-04-15 22:45:02.965 | SUCCESS  | agents.report_agent:run:34 | ReportAgent: Decision = DECLINE
+2026-04-15 22:45:02.970 | SUCCESS  | workflow:run_pipeline:61 | Workflow: Pipeline complete in 35.3ms | decision=HiringDecision.DECLINE
+2026-04-15 22:45:03.013 | INFO     | main:logging_middleware:82 | [c45f6369] POST /api/v1/predict — 200 (87.3ms)
+2026-04-15 22:45:03.038 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-15 22:45:03.105 | INFO     | main:logging_middleware:82 | [e9cf41ad] GET /api/v1/candidates — 200 (67.2ms)
+2026-04-15 22:45:03.322 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-15 22:45:03.325 | INFO     | main:logging_middleware:82 | [80410934] GET /health — 200 (3.0ms)
+2026-04-15 22:45:03.343 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-15 22:45:03.399 | INFO     | main:logging_middleware:82 | [eccfa289] GET /api/v1/candidates — 200 (55.6ms)
+2026-04-15 22:50:44.411 | INFO     | main:lifespan:26 | ApexAI startup — initializing database …
+2026-04-15 22:50:44.442 | SUCCESS  | main:lifespan:28 | Database ready ✓

@@ -1,0 +1,214 @@
+2026-04-11 13:52:46.421 | INFO     | main:lifespan:26 | ApexAI startup — initializing database …
+2026-04-11 13:52:46.442 | SUCCESS  | main:lifespan:28 | Database ready ✓
+2026-04-11 13:53:12.194 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-11 13:53:12.210 | INFO     | main:logging_middleware:82 | [561c9027] GET /health — 200 (16.5ms)
+2026-04-11 13:53:12.228 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 13:53:12.372 | INFO     | main:logging_middleware:82 | [9876888b] GET /api/v1/candidates — 200 (144.0ms)
+2026-04-11 13:56:56.422 | INFO     | main:logging_middleware:74 | [?] OPTIONS /api/v1/predict — start
+2026-04-11 13:56:56.431 | INFO     | main:logging_middleware:82 | [a9097500] OPTIONS /api/v1/predict — 200 (9.9ms)
+2026-04-11 13:56:56.437 | INFO     | main:logging_middleware:74 | [?] POST /api/v1/predict — start
+2026-04-11 13:56:56.446 | INFO     | routes:predict:38 | [5f4c1699] POST /predict
+2026-04-11 13:56:56.446 | INFO     | workflow:run_pipeline:42 | Workflow: Pipeline started (1701 chars)
+2026-04-11 13:56:56.447 | INFO     | workflow:run_pipeline:45 | → Stage 1: ResumeAgent
+2026-04-11 13:56:56.448 | INFO     | agents.resume_agent:run:35 | ResumeAgent: Parsing resume text (1701 chars)
+2026-04-11 13:56:56.454 | SUCCESS  | agents.resume_agent:run:57 | ResumeAgent: Parsed → name=John Mitchell, skills=29
+2026-04-11 13:56:56.456 | INFO     | workflow:run_pipeline:49 | → Stage 2: ScoringAgent
+2026-04-11 13:56:56.457 | INFO     | agents.scoring_agent:run:34 | ScoringAgent: Scoring candidate 'John Mitchell'
+2026-04-11 13:56:56.459 | SUCCESS  | agents.scoring_agent:run:60 | ScoringAgent: overall=8.5
+2026-04-11 13:56:56.461 | INFO     | workflow:run_pipeline:53 | → Stage 3: AdvisorAgent
+2026-04-11 13:56:56.462 | INFO     | agents.advisor_agent:run:12 | AdvisorAgent: Generating advice for 'John Mitchell'
+2026-04-11 13:56:56.463 | SUCCESS  | agents.advisor_agent:run:26 | AdvisorAgent: 6 strengths, 0 improvements
+2026-04-11 13:56:56.464 | INFO     | workflow:run_pipeline:57 | → Stage 4: ReportAgent
+2026-04-11 13:56:56.465 | INFO     | agents.report_agent:run:18 | ReportAgent: Generating report for 'John Mitchell'
+2026-04-11 13:56:56.467 | SUCCESS  | agents.report_agent:run:34 | ReportAgent: Decision = HIRE
+2026-04-11 13:56:56.469 | SUCCESS  | workflow:run_pipeline:61 | Workflow: Pipeline complete in 22.5ms | decision=HiringDecision.HIRE
+2026-04-11 13:56:56.510 | INFO     | main:logging_middleware:82 | [5f4c1699] POST /api/v1/predict — 200 (73.1ms)
+2026-04-11 13:56:56.763 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-11 13:56:56.767 | INFO     | main:logging_middleware:82 | [c5f44434] GET /health — 200 (3.4ms)
+2026-04-11 13:56:56.845 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 13:56:56.863 | INFO     | main:logging_middleware:82 | [b836251e] GET /api/v1/candidates — 200 (18.4ms)
+2026-04-11 13:57:35.025 | INFO     | main:logging_middleware:74 | [?] OPTIONS /api/v1/skill-gap — start
+2026-04-11 13:57:35.026 | INFO     | main:logging_middleware:82 | [d7920c91] OPTIONS /api/v1/skill-gap — 200 (1.9ms)
+2026-04-11 13:57:35.032 | INFO     | main:logging_middleware:74 | [?] POST /api/v1/skill-gap — start
+2026-04-11 13:57:35.039 | INFO     | routes:skill_gap:117 | [dbdfa491] POST /skill-gap
+2026-04-11 13:57:35.040 | INFO     | agents.resume_agent:run:35 | ResumeAgent: Parsing resume text (1701 chars)
+2026-04-11 13:57:35.045 | SUCCESS  | agents.resume_agent:run:57 | ResumeAgent: Parsed → name=John Mitchell, skills=29
+2026-04-11 13:57:35.054 | INFO     | main:logging_middleware:82 | [dbdfa491] POST /api/v1/skill-gap — 200 (22.5ms)
+2026-04-11 13:57:47.392 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 13:57:47.421 | INFO     | main:logging_middleware:82 | [2ffa2f3e] GET /api/v1/candidates — 200 (29.2ms)
+2026-04-11 14:00:21.597 | INFO     | main:logging_middleware:74 | [?] POST /api/v1/predict — start
+2026-04-11 14:00:21.602 | INFO     | routes:predict:38 | [9deab484] POST /predict
+2026-04-11 14:00:21.604 | INFO     | workflow:run_pipeline:42 | Workflow: Pipeline started (1468 chars)
+2026-04-11 14:00:21.606 | INFO     | workflow:run_pipeline:45 | → Stage 1: ResumeAgent
+2026-04-11 14:00:21.608 | INFO     | agents.resume_agent:run:35 | ResumeAgent: Parsing resume text (1468 chars)
+2026-04-11 14:00:21.610 | SUCCESS  | agents.resume_agent:run:57 | ResumeAgent: Parsed → name=Priya Sharma, skills=25
+2026-04-11 14:00:21.611 | INFO     | workflow:run_pipeline:49 | → Stage 2: ScoringAgent
+2026-04-11 14:00:21.613 | INFO     | agents.scoring_agent:run:34 | ScoringAgent: Scoring candidate 'Priya Sharma'
+2026-04-11 14:00:21.616 | SUCCESS  | agents.scoring_agent:run:60 | ScoringAgent: overall=7.92
+2026-04-11 14:00:21.618 | INFO     | workflow:run_pipeline:53 | → Stage 3: AdvisorAgent
+2026-04-11 14:00:21.624 | INFO     | agents.advisor_agent:run:12 | AdvisorAgent: Generating advice for 'Priya Sharma'
+2026-04-11 14:00:21.625 | SUCCESS  | agents.advisor_agent:run:26 | AdvisorAgent: 4 strengths, 0 improvements
+2026-04-11 14:00:21.630 | INFO     | workflow:run_pipeline:57 | → Stage 4: ReportAgent
+2026-04-11 14:00:21.632 | INFO     | agents.report_agent:run:18 | ReportAgent: Generating report for 'Priya Sharma'
+2026-04-11 14:00:21.634 | SUCCESS  | agents.report_agent:run:34 | ReportAgent: Decision = HIRE
+2026-04-11 14:00:21.643 | SUCCESS  | workflow:run_pipeline:61 | Workflow: Pipeline complete in 39.7ms | decision=HiringDecision.HIRE
+2026-04-11 14:00:21.676 | INFO     | main:logging_middleware:82 | [9deab484] POST /api/v1/predict — 200 (78.8ms)
+2026-04-11 14:00:21.981 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-11 14:00:21.985 | INFO     | main:logging_middleware:82 | [e7b88db3] GET /health — 200 (3.3ms)
+2026-04-11 14:00:22.005 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 14:00:22.037 | INFO     | main:logging_middleware:82 | [dce75063] GET /api/v1/candidates — 200 (32.1ms)
+2026-04-11 14:02:22.701 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-11 14:02:22.703 | INFO     | main:logging_middleware:82 | [095ef6d2] GET /health — 200 (2.3ms)
+2026-04-11 14:02:22.816 | INFO     | main:logging_middleware:74 | [?] GET /favicon.ico — start
+2026-04-11 14:02:22.819 | INFO     | main:logging_middleware:82 | [6ae444ea] GET /favicon.ico — 404 (3.1ms)
+2026-04-11 14:05:48.858 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 14:05:48.943 | INFO     | main:logging_middleware:82 | [39c902c4] GET /api/v1/candidates — 200 (85.6ms)
+2026-04-11 14:07:03.080 | INFO     | main:logging_middleware:74 | [?] OPTIONS /api/v1/predict — start
+2026-04-11 14:07:03.082 | INFO     | main:logging_middleware:82 | [b1c796f2] OPTIONS /api/v1/predict — 200 (1.9ms)
+2026-04-11 14:07:03.087 | INFO     | main:logging_middleware:74 | [?] POST /api/v1/predict — start
+2026-04-11 14:07:03.095 | INFO     | routes:predict:38 | [28ab799c] POST /predict
+2026-04-11 14:07:03.096 | INFO     | workflow:run_pipeline:42 | Workflow: Pipeline started (1468 chars)
+2026-04-11 14:07:03.097 | INFO     | workflow:run_pipeline:45 | → Stage 1: ResumeAgent
+2026-04-11 14:07:03.099 | INFO     | agents.resume_agent:run:35 | ResumeAgent: Parsing resume text (1468 chars)
+2026-04-11 14:07:03.102 | SUCCESS  | agents.resume_agent:run:57 | ResumeAgent: Parsed → name=Priya Sharma, skills=25
+2026-04-11 14:07:03.103 | INFO     | workflow:run_pipeline:49 | → Stage 2: ScoringAgent
+2026-04-11 14:07:03.105 | INFO     | agents.scoring_agent:run:34 | ScoringAgent: Scoring candidate 'Priya Sharma'
+2026-04-11 14:07:03.106 | SUCCESS  | agents.scoring_agent:run:60 | ScoringAgent: overall=7.92
+2026-04-11 14:07:03.107 | INFO     | workflow:run_pipeline:53 | → Stage 3: AdvisorAgent
+2026-04-11 14:07:03.109 | INFO     | agents.advisor_agent:run:12 | AdvisorAgent: Generating advice for 'Priya Sharma'
+2026-04-11 14:07:03.110 | SUCCESS  | agents.advisor_agent:run:26 | AdvisorAgent: 4 strengths, 0 improvements
+2026-04-11 14:07:03.111 | INFO     | workflow:run_pipeline:57 | → Stage 4: ReportAgent
+2026-04-11 14:07:03.112 | INFO     | agents.report_agent:run:18 | ReportAgent: Generating report for 'Priya Sharma'
+2026-04-11 14:07:03.113 | SUCCESS  | agents.report_agent:run:34 | ReportAgent: Decision = HIRE
+2026-04-11 14:07:03.115 | SUCCESS  | workflow:run_pipeline:61 | Workflow: Pipeline complete in 18.9ms | decision=HiringDecision.HIRE
+2026-04-11 14:07:03.138 | INFO     | main:logging_middleware:82 | [28ab799c] POST /api/v1/predict — 200 (51.2ms)
+2026-04-11 14:07:03.539 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-11 14:07:03.542 | INFO     | main:logging_middleware:82 | [723afdb8] GET /health — 200 (3.6ms)
+2026-04-11 14:07:03.559 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 14:07:03.599 | INFO     | main:logging_middleware:82 | [63d24495] GET /api/v1/candidates — 200 (40.2ms)
+2026-04-11 14:09:34.146 | INFO     | main:lifespan:26 | ApexAI startup — initializing database …
+2026-04-11 14:09:34.167 | SUCCESS  | main:lifespan:28 | Database ready ✓
+2026-04-11 14:09:44.076 | INFO     | main:logging_middleware:74 | [?] GET / — start
+2026-04-11 14:09:44.083 | INFO     | main:logging_middleware:82 | [9da7c2a8] GET / — 404 (6.8ms)
+2026-04-11 14:09:44.254 | INFO     | main:logging_middleware:74 | [?] GET /favicon.ico — start
+2026-04-11 14:09:44.258 | INFO     | main:logging_middleware:82 | [e1bfde57] GET /favicon.ico — 404 (4.1ms)
+2026-04-11 14:10:01.107 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-11 14:10:01.200 | INFO     | main:logging_middleware:82 | [13b1555a] GET /health — 200 (93.2ms)
+2026-04-11 14:10:01.229 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 14:10:01.400 | INFO     | main:logging_middleware:82 | [505de4a3] GET /api/v1/candidates — 200 (171.3ms)
+2026-04-11 14:10:20.739 | INFO     | main:logging_middleware:74 | [?] OPTIONS /api/v1/predict — start
+2026-04-11 14:10:20.742 | INFO     | main:logging_middleware:82 | [323e22d7] OPTIONS /api/v1/predict — 200 (2.8ms)
+2026-04-11 14:10:20.749 | INFO     | main:logging_middleware:74 | [?] POST /api/v1/predict — start
+2026-04-11 14:10:20.772 | INFO     | routes:predict:38 | [072b26db] POST /predict
+2026-04-11 14:10:20.773 | INFO     | workflow:run_pipeline:42 | Workflow: Pipeline started (1468 chars)
+2026-04-11 14:10:20.775 | INFO     | workflow:run_pipeline:45 | → Stage 1: ResumeAgent
+2026-04-11 14:10:20.776 | INFO     | agents.resume_agent:run:35 | ResumeAgent: Parsing resume text (1468 chars)
+2026-04-11 14:10:20.784 | SUCCESS  | agents.resume_agent:run:57 | ResumeAgent: Parsed → name=Priya Sharma, skills=25
+2026-04-11 14:10:20.785 | INFO     | workflow:run_pipeline:49 | → Stage 2: ScoringAgent
+2026-04-11 14:10:20.786 | INFO     | agents.scoring_agent:run:34 | ScoringAgent: Scoring candidate 'Priya Sharma'
+2026-04-11 14:10:20.789 | SUCCESS  | agents.scoring_agent:run:60 | ScoringAgent: overall=7.92
+2026-04-11 14:10:20.790 | INFO     | workflow:run_pipeline:53 | → Stage 3: AdvisorAgent
+2026-04-11 14:10:20.791 | INFO     | agents.advisor_agent:run:12 | AdvisorAgent: Generating advice for 'Priya Sharma'
+2026-04-11 14:10:20.793 | SUCCESS  | agents.advisor_agent:run:26 | AdvisorAgent: 4 strengths, 0 improvements
+2026-04-11 14:10:20.794 | INFO     | workflow:run_pipeline:57 | → Stage 4: ReportAgent
+2026-04-11 14:10:20.794 | INFO     | agents.report_agent:run:18 | ReportAgent: Generating report for 'Priya Sharma'
+2026-04-11 14:10:20.796 | SUCCESS  | agents.report_agent:run:34 | ReportAgent: Decision = HIRE
+2026-04-11 14:10:20.797 | SUCCESS  | workflow:run_pipeline:61 | Workflow: Pipeline complete in 24.3ms | decision=HiringDecision.HIRE
+2026-04-11 14:10:20.849 | INFO     | main:logging_middleware:82 | [072b26db] POST /api/v1/predict — 200 (99.5ms)
+2026-04-11 14:10:21.118 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-11 14:10:21.122 | INFO     | main:logging_middleware:82 | [c08a97ff] GET /health — 200 (4.1ms)
+2026-04-11 14:10:21.140 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 14:10:21.184 | INFO     | main:logging_middleware:82 | [515b0212] GET /api/v1/candidates — 200 (43.7ms)
+2026-04-11 14:10:36.221 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 14:10:36.247 | INFO     | main:logging_middleware:82 | [6ce4bfe0] GET /api/v1/candidates — 200 (25.8ms)
+2026-04-11 14:10:40.136 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates/6 — start
+2026-04-11 14:10:40.147 | INFO     | main:logging_middleware:82 | [68d770d2] GET /api/v1/candidates/6 — 200 (10.9ms)
+2026-04-11 14:15:33.937 | INFO     | main:lifespan:26 | ApexAI startup — initializing database …
+2026-04-11 14:15:33.963 | SUCCESS  | main:lifespan:28 | Database ready ✓
+2026-04-11 14:15:51.705 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-11 14:15:51.712 | INFO     | main:logging_middleware:82 | [014b4512] GET /health — 200 (7.4ms)
+2026-04-11 14:15:51.724 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 14:15:51.801 | INFO     | main:logging_middleware:82 | [babef45c] GET /api/v1/candidates — 200 (77.1ms)
+2026-04-11 14:16:09.827 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-11 14:16:09.832 | INFO     | main:logging_middleware:82 | [9854d2be] GET /health — 200 (4.9ms)
+2026-04-11 14:16:09.958 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 14:16:09.996 | INFO     | main:logging_middleware:82 | [ae057b42] GET /api/v1/candidates — 200 (37.6ms)
+2026-04-11 14:16:31.098 | INFO     | main:logging_middleware:74 | [?] OPTIONS /api/v1/predict — start
+2026-04-11 14:16:31.100 | INFO     | main:logging_middleware:82 | [a7d21bee] OPTIONS /api/v1/predict — 200 (1.9ms)
+2026-04-11 14:16:31.105 | INFO     | main:logging_middleware:74 | [?] POST /api/v1/predict — start
+2026-04-11 14:16:31.132 | INFO     | routes:predict:38 | [2bea3a61] POST /predict
+2026-04-11 14:16:31.134 | INFO     | workflow:run_pipeline:42 | Workflow: Pipeline started (1468 chars)
+2026-04-11 14:16:31.136 | INFO     | workflow:run_pipeline:45 | → Stage 1: ResumeAgent
+2026-04-11 14:16:31.137 | INFO     | agents.resume_agent:run:35 | ResumeAgent: Parsing resume text (1468 chars)
+2026-04-11 14:16:31.143 | SUCCESS  | agents.resume_agent:run:57 | ResumeAgent: Parsed → name=Priya Sharma, skills=25
+2026-04-11 14:16:31.144 | INFO     | workflow:run_pipeline:49 | → Stage 2: ScoringAgent
+2026-04-11 14:16:31.145 | INFO     | agents.scoring_agent:run:34 | ScoringAgent: Scoring candidate 'Priya Sharma'
+2026-04-11 14:16:31.147 | SUCCESS  | agents.scoring_agent:run:60 | ScoringAgent: overall=7.92
+2026-04-11 14:16:31.148 | INFO     | workflow:run_pipeline:53 | → Stage 3: AdvisorAgent
+2026-04-11 14:16:31.149 | INFO     | agents.advisor_agent:run:12 | AdvisorAgent: Generating advice for 'Priya Sharma'
+2026-04-11 14:16:31.151 | SUCCESS  | agents.advisor_agent:run:26 | AdvisorAgent: 4 strengths, 0 improvements
+2026-04-11 14:16:31.152 | INFO     | workflow:run_pipeline:57 | → Stage 4: ReportAgent
+2026-04-11 14:16:31.153 | INFO     | agents.report_agent:run:18 | ReportAgent: Generating report for 'Priya Sharma'
+2026-04-11 14:16:31.156 | SUCCESS  | agents.report_agent:run:34 | ReportAgent: Decision = HIRE
+2026-04-11 14:16:31.157 | SUCCESS  | workflow:run_pipeline:61 | Workflow: Pipeline complete in 23.3ms | decision=HiringDecision.HIRE
+2026-04-11 14:16:31.201 | INFO     | main:logging_middleware:82 | [2bea3a61] POST /api/v1/predict — 200 (95.5ms)
+2026-04-11 14:16:31.214 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 14:16:31.253 | INFO     | main:logging_middleware:82 | [8e094508] GET /api/v1/candidates — 200 (38.7ms)
+2026-04-11 14:16:31.520 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-11 14:16:31.523 | INFO     | main:logging_middleware:82 | [a43f824b] GET /health — 200 (2.3ms)
+2026-04-11 14:16:31.537 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 14:16:31.577 | INFO     | main:logging_middleware:82 | [5a762a8d] GET /api/v1/candidates — 200 (39.6ms)
+2026-04-11 14:16:42.179 | INFO     | main:logging_middleware:74 | [?] POST /api/v1/predict — start
+2026-04-11 14:16:42.185 | INFO     | routes:predict:38 | [d13ff89b] POST /predict
+2026-04-11 14:16:42.186 | INFO     | workflow:run_pipeline:42 | Workflow: Pipeline started (1468 chars)
+2026-04-11 14:16:42.187 | INFO     | workflow:run_pipeline:45 | → Stage 1: ResumeAgent
+2026-04-11 14:16:42.188 | INFO     | agents.resume_agent:run:35 | ResumeAgent: Parsing resume text (1468 chars)
+2026-04-11 14:16:42.190 | SUCCESS  | agents.resume_agent:run:57 | ResumeAgent: Parsed → name=Priya Sharma, skills=25
+2026-04-11 14:16:42.191 | INFO     | workflow:run_pipeline:49 | → Stage 2: ScoringAgent
+2026-04-11 14:16:42.192 | INFO     | agents.scoring_agent:run:34 | ScoringAgent: Scoring candidate 'Priya Sharma'
+2026-04-11 14:16:42.194 | SUCCESS  | agents.scoring_agent:run:60 | ScoringAgent: overall=7.92
+2026-04-11 14:16:42.196 | INFO     | workflow:run_pipeline:53 | → Stage 3: AdvisorAgent
+2026-04-11 14:16:42.198 | INFO     | agents.advisor_agent:run:12 | AdvisorAgent: Generating advice for 'Priya Sharma'
+2026-04-11 14:16:42.201 | SUCCESS  | agents.advisor_agent:run:26 | AdvisorAgent: 4 strengths, 0 improvements
+2026-04-11 14:16:42.202 | INFO     | workflow:run_pipeline:57 | → Stage 4: ReportAgent
+2026-04-11 14:16:42.203 | INFO     | agents.report_agent:run:18 | ReportAgent: Generating report for 'Priya Sharma'
+2026-04-11 14:16:42.204 | SUCCESS  | agents.report_agent:run:34 | ReportAgent: Decision = HIRE
+2026-04-11 14:16:42.206 | SUCCESS  | workflow:run_pipeline:61 | Workflow: Pipeline complete in 19.6ms | decision=HiringDecision.HIRE
+2026-04-11 14:16:42.236 | INFO     | main:logging_middleware:82 | [d13ff89b] POST /api/v1/predict — 200 (57.1ms)
+2026-04-11 14:16:42.256 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 14:16:42.309 | INFO     | main:logging_middleware:82 | [d4371454] GET /api/v1/candidates — 200 (53.4ms)
+2026-04-11 14:16:42.541 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-11 14:16:42.545 | INFO     | main:logging_middleware:82 | [d3d6f462] GET /health — 200 (3.8ms)
+2026-04-11 14:16:42.563 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 14:16:42.623 | INFO     | main:logging_middleware:82 | [4bc11bb0] GET /api/v1/candidates — 200 (60.5ms)
+2026-04-11 14:20:05.379 | INFO     | main:lifespan:26 | ApexAI startup — initializing database …
+2026-04-11 14:20:05.404 | SUCCESS  | main:lifespan:28 | Database ready ✓
+2026-04-11 14:20:22.747 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-11 14:20:22.757 | INFO     | main:logging_middleware:82 | [97f7ded0] GET /health — 200 (10.8ms)
+2026-04-11 14:20:22.803 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 14:20:22.921 | INFO     | main:logging_middleware:82 | [b7bd2577] GET /api/v1/candidates — 200 (117.7ms)
+2026-04-11 14:20:27.944 | INFO     | main:logging_middleware:74 | [?] OPTIONS /api/v1/predict — start
+2026-04-11 14:20:27.948 | INFO     | main:logging_middleware:82 | [d2cbe0fb] OPTIONS /api/v1/predict — 200 (3.9ms)
+2026-04-11 14:20:27.954 | INFO     | main:logging_middleware:74 | [?] POST /api/v1/predict — start
+2026-04-11 14:20:27.982 | INFO     | routes:predict:38 | [002d8c7e] POST /predict
+2026-04-11 14:20:27.986 | INFO     | workflow:run_pipeline:42 | Workflow: Pipeline started (1468 chars)
+2026-04-11 14:20:27.992 | INFO     | workflow:run_pipeline:45 | → Stage 1: ResumeAgent
+2026-04-11 14:20:27.993 | INFO     | agents.resume_agent:run:35 | ResumeAgent: Parsing resume text (1468 chars)
+2026-04-11 14:20:28.002 | SUCCESS  | agents.resume_agent:run:57 | ResumeAgent: Parsed → name=Priya Sharma, skills=25
+2026-04-11 14:20:28.007 | INFO     | workflow:run_pipeline:49 | → Stage 2: ScoringAgent
+2026-04-11 14:20:28.008 | INFO     | agents.scoring_agent:run:34 | ScoringAgent: Scoring candidate 'Priya Sharma'
+2026-04-11 14:20:28.011 | SUCCESS  | agents.scoring_agent:run:60 | ScoringAgent: overall=7.92
+2026-04-11 14:20:28.012 | INFO     | workflow:run_pipeline:53 | → Stage 3: AdvisorAgent
+2026-04-11 14:20:28.013 | INFO     | agents.advisor_agent:run:12 | AdvisorAgent: Generating advice for 'Priya Sharma'
+2026-04-11 14:20:28.014 | SUCCESS  | agents.advisor_agent:run:26 | AdvisorAgent: 4 strengths, 0 improvements
+2026-04-11 14:20:28.015 | INFO     | workflow:run_pipeline:57 | → Stage 4: ReportAgent
+2026-04-11 14:20:28.018 | INFO     | agents.report_agent:run:18 | ReportAgent: Generating report for 'Priya Sharma'
+2026-04-11 14:20:28.023 | SUCCESS  | agents.report_agent:run:34 | ReportAgent: Decision = HIRE
+2026-04-11 14:20:28.025 | SUCCESS  | workflow:run_pipeline:61 | Workflow: Pipeline complete in 39.5ms | decision=HiringDecision.HIRE
+2026-04-11 14:20:28.092 | INFO     | main:logging_middleware:82 | [002d8c7e] POST /api/v1/predict — 200 (137.6ms)
+2026-04-11 14:20:28.120 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 14:20:28.401 | INFO     | main:logging_middleware:82 | [0b26ea69] GET /api/v1/candidates — 200 (281.0ms)
+2026-04-11 14:20:28.741 | INFO     | main:logging_middleware:74 | [?] GET /health — start
+2026-04-11 14:20:28.744 | INFO     | main:logging_middleware:82 | [19ca8800] GET /health — 200 (3.0ms)
+2026-04-11 14:20:28.754 | INFO     | main:logging_middleware:74 | [?] GET /api/v1/candidates — start
+2026-04-11 14:20:28.806 | INFO     | main:logging_middleware:82 | [125f01d2] GET /api/v1/candidates — 200 (51.6ms)
