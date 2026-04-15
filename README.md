@@ -1,12 +1,18 @@
 # ApexAI — Predictive Talent Intelligence Platform
 
-> A production-ready, multi-agent AI backend for hiring intelligence. Built with FastAPI, SQLAlchemy, and clean architecture.
+> Intelligent Hiring Decisions Powered by AI
+
+ApexAI is an end-to-end AI system designed to make hiring faster, more consistent, and more intelligent by combining modern techniques like LLMs, RAG, and Machine Learning.
 
 ---
 
 ## Overview
 
-ApexAI is an AI-powered hiring platform that automates resume analysis, candidate scoring, skill gap detection, and hiring decision generation through a four-stage agent pipeline.
+Recruitment often involves a lot of manual effort — reviewing resumes, comparing candidates, and making subjective decisions.
+ApexAI aims to simplify this by building a system that can:
+Understand candidate profiles
+Evaluate them using structured and contextual signals
+Provide clear, explainable recommendations
 
 ```
 ResumeAgent → ScoringAgent → AdvisorAgent → ReportAgent
@@ -16,54 +22,95 @@ Each stage builds on the previous, producing a full executive talent intelligenc
 
 ---
 
-## Features
+## 💡 Why ApexAI
 
-- **Resume Parsing** — NLP + regex extraction of name, contact, skills, experience, education, certifications
-- **Multi-Dimensional Scoring** — 5 dimensions: Technical Skills, Experience Depth, Education Relevance, Communication Clarity, Leadership Potential
-- **AI Advisor** — Strengths analysis, improvement roadmap, career path suggestions, prioritized action items
-- **Hiring Reports** — Executive summary, decision rationale, full formatted talent report
-- **Skill Gap Analysis** — Compare resume against required role skills, get learning time estimates
-- **Candidate Database** — Full history: save, retrieve, filter candidates and their reports
-- **Production-Ready** — Request ID middleware, structured Loguru logging, performance headers, global error handling
+Evaluating candidates from resumes alone often leaves room for ambiguity, especially in the early stages.
+
+ApexAI is built to bring more clarity and structure to this process by turning unstructured resume data into meaningful insights, consistent evaluations, and explainable hiring outcomes through a unified pipeline.
+
+## 🚀 Features
+
+Each part of the system is built to take raw resume data and turn it into clear, structured, and usable hiring insights.
+
+- **Resume Parsing**  
+  Extracts key information like skills, experience, education, and certifications using a mix of NLP and rule-based methods to keep it reliable.
+
+- **Candidate Scoring**  
+  Scores candidates across five important areas — technical skills, experience depth, education relevance, communication, and leadership — to make evaluations consistent.
+
+- **AI Advisor**  
+  Looks at the candidate profile and gives practical insights, including strengths, areas to improve, and possible career directions.
+
+- **Hiring Decisions**  
+  Generates clear outcomes (Hire / Consider / Decline) along with reasoning, so decisions are not just numbers but understandable.
+
+- **Skill Gap Analysis**  
+  Compares the candidate with role requirements and highlights missing skills, along with an estimate of what it would take to improve.
+
+- **Candidate Data Management**  
+  Stores and organizes candidate information and reports so they can be reused, searched, and tracked easily.
+
+- **Production-Ready Backend**  
+  Includes structured logging, error handling, and a clean API design so it can be extended or deployed in real scenarios.
 
 ---
 
-## Tech Stack
+## ⚙️ Tech Stack
 
-| Layer        | Technology                          |
-|--------------|-------------------------------------|
-| Framework    | FastAPI 0.111+                      |
-| Validation   | Pydantic v2                         |
-| Database ORM | SQLAlchemy 2.0                      |
-| Database     | SQLite (default) / PostgreSQL-ready |
-| Logging      | Loguru                              |
-| Runtime      | Python 3.10+                        |
-| Server       | Uvicorn (ASGI)                      |
+### 🧠 AI & Intelligence Layer
+- LLMs + LangGraph (Multi-Agent Orchestration)
+- Retrieval-Augmented Generation (RAG)
+- Knowledge Graphs for structured reasoning
+- XGBoost for candidate success prediction
+
+### ⚙️ Backend & API Layer
+- FastAPI (high-performance API framework)
+- Pydantic v2 (data validation & schema management)
+- SQLAlchemy 2.0 (ORM)
+
+### 🗄️ Data Layer
+- SQLite (default) / PostgreSQL (production-ready)
+
+### 🏗️ System & Infrastructure
+- Uvicorn (ASGI server)
+- Loguru (structured logging)
+- Docker (containerization & deployment)
+- Python 3.10+
 
 ---
 
-## Project Structure
+## ⚙️ Key Engineering Decisions
+
+- Designed as a modular multi-agent pipeline instead of a single monolithic function
+- Separated API layer, business logic, and data models for maintainability
+- Used structured logging and request tracking for debuggability
+- Built database layer to be easily switchable (SQLite → PostgreSQL)
+- Standardized API responses for consistency across endpoints
+
+## 🗂️ Project Structure
+
+The project is organized to keep the API layer, agent pipeline, and data models clearly separated, making the system easier to extend and maintain.
 
 ```
 apexai/
-├── main.py                  # App entrypoint, middleware, lifecycle
-├── routes.py                # All API endpoints
-├── workflow.py              # 4-agent pipeline orchestrator
-├── database.py              # SQLAlchemy setup + session factory
-├── config.py                # Environment-based settings
-├── logging_config.py        # Loguru structured logging
-├── requirements.txt
-├── .env.example
-│
-├── agents/
-│   ├── resume_agent.py      # Stage 1 — Parse resume
-│   ├── scoring_agent.py     # Stage 2 — Score across 5 dimensions
-│   ├── advisor_agent.py     # Stage 3 — Generate advice & career paths
-│   └── report_agent.py      # Stage 4 — Executive report + hiring decision
-│
-└── models/
-    ├── schemas.py           # Pydantic v2 request/response models
-    └── database_models.py   # SQLAlchemy ORM models
+├── main.py              # Application entry point (startup, middleware, lifecycle)
+├── routes.py            # API endpoints
+├── workflow.py          # Orchestrates the multi-agent pipeline
+├── database.py          # Database setup and session management
+├── config.py            # Environment-based configuration
+├── logging_config.py    # Structured logging setup
+├── requirements.txt     # Dependencies
+├── .env.example         # Environment variables template
+
+├── agents/              # Core intelligence layer
+│   ├── resume_agent.py     # Parses and structures resume data
+│   ├── scoring_agent.py    # Evaluates candidate across multiple dimensions
+│   ├── advisor_agent.py    # Generates insights and improvement suggestions
+│   ├── report_agent.py     # Produces final report and hiring decision
+
+├── models/              # Data and schema layer
+│   ├── schemas.py         # Request/response validation (Pydantic)
+│   ├── database_models.py # ORM models (SQLAlchemy)
 ```
 
 ---
@@ -223,10 +270,17 @@ Score weights:
 
 ---
 
+## 🚧 Future Improvements
+
+- Add real-time evaluation dashboard
+- Improve scoring with ML-based models
+- Integrate external job description parsing
+- Add authentication and role-based access
+
 ## License
 
 MIT — free to use, modify, and distribute.
 
 ---
 
-*Powered by ApexAI — Predictive Talent Intelligence Platform*
+*Built as a production-style backend system for AI-driven talent evaluation.*
